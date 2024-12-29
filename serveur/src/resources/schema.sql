@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS produit;
+DROP TABLE IF EXISTS categorie;
+
+
+CREATE TABLE IF NOT EXISTS categorie (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    libelle VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS produit (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(200) NOT NULL,
+    categorie_id BIGINT,
+    quantite INT NOT NULL DEFAULT 0,
+    prix_unitaire DECIMAL(10,2) NOT NULL,
+    statut VARCHAR(50) NOT NULL,
+    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (categorie_id) REFERENCES categorie(id)
+);
